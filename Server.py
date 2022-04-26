@@ -39,12 +39,12 @@ key = nacl.utils.random(32)
 nonce = nacl.utils.random(8)
 
 # Apertura de archivo recibido
-file = open("Prueba.txt", "rb")  # opening for [r]eading as [b]inary
+file = open("Prueba.txt", "rb")
 data = file.read()
 file.close()
 
 # Cifrado de archivo
 cf = crypto_aead_chacha20poly1305_encrypt(data, None, nonce, key)
-file = open("PruebaCifrada.txt", "wb")  # open for [w]riting as [b]inary
+file = open("PruebaCifrada.txt", "wb")
 file.write(cf)
 file.close()
