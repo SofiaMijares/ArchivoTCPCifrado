@@ -26,7 +26,7 @@ def receive_file(sck: socket.socket, filename):
                 f.write(chunk)
                 received_bytes += len(chunk)
                 
-with socket.create_server(("192.168.100.79", 10000)) as server:
+with socket.create_server(("localhost", 10000)) as server:
     print("Esperando al cliente...")
     conn, address = server.accept()
     print(f"{address[0]}:{address[1]} conectado.")
@@ -39,12 +39,12 @@ key = nacl.utils.random(32)
 nonce = nacl.utils.random(8)
 
 # Apertura de archivo recibido
-file = open("C:/Users/asus/OneDrive - ITESO/SeguridadRedes/Criptografia/Ejercicios_Python/ArchivoTCPCifrado/Prueba.txt", "rb")  # opening for [r]eading as [b]inary
+file = open("Prueba.txt", "rb")  # opening for [r]eading as [b]inary
 data = file.read()
 file.close()
 
 # Cifrado de archivo
 cf = crypto_aead_chacha20poly1305_encrypt(data, None, nonce, key)
-file = open("C:/Users/asus/OneDrive - ITESO/SeguridadRedes/Criptografia/Ejercicios_Python/ArchivoTCPCifrado/PruebaCifrada.txt", "wb")  # open for [w]riting as [b]inary
+file = open("PruebaCifrada.txt", "wb")  # open for [w]riting as [b]inary
 file.write(cf)
 file.close()
